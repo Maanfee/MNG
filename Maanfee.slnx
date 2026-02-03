@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Dashboard/">
+    <Project Path="Dashboard/Maanfee.Dashboard.Client/Maanfee.Dashboard.Client.csproj" Id="5cde5731-56bd-48e1-af27-1b7564e787e3" />
+    <Project Path="Dashboard/Maanfee.Dashboard/Maanfee.Dashboard.csproj" Id="19a8c501-23dd-4bda-baa0-b30de7228fc6" />
+  </Folder>
+  <Folder Name="/DashboardAPI/">
+    <Project Path="DashboardAPI/Maanfee.Dashboard.Core/Maanfee.Dashboard.Core.csproj" Id="05a7bb30-b1d5-4b32-9e09-4b10019d79ad" />
+    <Project Path="DashboardAPI/Maanfee.Dashboard.Views.Core/Maanfee.Dashboard.Views.Core.csproj" Id="972bbd27-7af7-4f93-8d3e-e3aa24ff2396" />
+  </Folder>
+</Solution>
