@@ -1,0 +1,60 @@
+﻿@namespace Maanfee.Dashboard.Views.Core
+
+<style>
+
+	.theme-button {
+        position: fixed;
+        top: 13%;
+        background: var(--mud-palette-primary);
+        z-index: 1150;
+        cursor: pointer;
+        box-shadow: rgba(55, 55, 55, 0.15) 0 0 2px 0, rgba(55, 55, 55, 0.15) 0 8px 12px 0;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .theme-button-rtl {
+        left: 0;
+        border-top-right-radius: 24px !important;
+        border-bottom-right-radius: 24px !important;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    .theme-button-ltr {
+        right: 0;
+        border-top-left-radius: 24px !important;
+        border-bottom-left-radius: 24px !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .theme-icon {
+        color: white;
+        animation: Pendulum 3.5s ease-in-out infinite;
+    }
+
+	@("@keyframes Pendulum {  0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-90deg); }}")
+
+</style>
+
+<div class="theme-button @GetThemeButtonClass()" @onclick="OnClick">
+	<MudTooltip Arrow="true" Placement="Placement.Left" Text="@DashboardResource.StringTheme">
+		<MudIcon Icon="@Icons.Material.Filled.Brush" Style="color: white" Class="theme-icon" />
+	</MudTooltip>
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    private string GetThemeButtonClass()
+    {
+        return SharedLayoutSettings.IsRTL ? "theme-button-rtl" : "theme-button-ltr";
+    }
+
+    private Placement GetTooltipPlacement()
+    {
+        return SharedLayoutSettings.IsRTL ? Placement.Right : Placement.Left;
+    }
+}

@@ -13,13 +13,13 @@ namespace Maanfee.Dashboard.Views.Core
         public LocalStorage LocalStorage;
         private const string ConfigurationStoredName = "ConfigurationStorage";
 
-        public async Task InitConfigurationAsync(LanguageService.SupportedCountry DefaultLanguage)
+        public async Task InitConfigurationAsync(LanguageManager.SupportedCountry DefaultLanguage)
         {
-            var StoredConfiguration = await LocalStorage.GetAsync<LayoutSettingsModel>(ConfigurationStoredName);
+            var StoredConfiguration = await LocalStorage.GetAsync<LayoutSettings>(ConfigurationStoredName);
             if (StoredConfiguration == null)
             {
-                LayoutSettingsModel LayoutSettings = CreateDefaultConfiguration(LanguageService.GetCultureCode(DefaultLanguage));
-                await LocalStorage.SetAsync<LayoutSettingsModel>(ConfigurationStoredName, LayoutSettings);
+                LayoutSettings LayoutSettings = CreateDefaultConfiguration(LanguageManager.GetCultureCode(DefaultLanguage));
+                await LocalStorage.SetAsync<LayoutSettings>(ConfigurationStoredName, LayoutSettings);
 
                 SharedLayoutSettings.IsDarkMode = LayoutSettings.IsDarkMode;
                 SharedLayoutSettings.IsRTL = LayoutSettings.IsRTL;
@@ -27,6 +27,7 @@ namespace Maanfee.Dashboard.Views.Core
                 SharedLayoutSettings.CurrentVersion = LayoutSettings.CurrentVersion;
                 SharedLayoutSettings.IsFullscreenMode = LayoutSettings.IsFullscreenMode;
                 SharedLayoutSettings.CultureCode = LayoutSettings.CultureCode;
+                SharedLayoutSettings.RenderMode = LayoutSettings.RenderMode;
             }
             else
             {
@@ -36,12 +37,13 @@ namespace Maanfee.Dashboard.Views.Core
                 SharedLayoutSettings.CurrentVersion = StoredConfiguration.CurrentVersion;
                 SharedLayoutSettings.IsFullscreenMode = StoredConfiguration.IsFullscreenMode;
                 SharedLayoutSettings.CultureCode = StoredConfiguration.CultureCode;
+                SharedLayoutSettings.RenderMode = StoredConfiguration.RenderMode;
             }
         }
 
         public async Task SetConfigurationAsync()
         {
-            await LocalStorage.SetAsync<LayoutSettingsModel>(ConfigurationStoredName, new LayoutSettingsModel()
+            await LocalStorage.SetAsync<LayoutSettings>(ConfigurationStoredName, new LayoutSettings()
             {
                 IsDarkMode = SharedLayoutSettings.IsDarkMode,
                 IsRTL = SharedLayoutSettings.IsRTL,
@@ -49,19 +51,21 @@ namespace Maanfee.Dashboard.Views.Core
                 CurrentVersion = SharedLayoutSettings.CurrentVersion,
                 IsFullscreenMode = SharedLayoutSettings.IsFullscreenMode,
                 CultureCode = SharedLayoutSettings.CultureCode,
+                RenderMode = SharedLayoutSettings.RenderMode,
             });
         }
 
-        private LayoutSettingsModel CreateDefaultConfiguration(string defaultLanguageCode)
+        private LayoutSettings CreateDefaultConfiguration(string DefaultLanguageCode)
         {
-            return new LayoutSettingsModel
+            return new LayoutSettings
             {
                 IsDarkMode = false,
                 IsRTL = false,
                 ThemeColor = new PaletteLight().Primary.Value,
                 CurrentVersion = string.Empty,
                 IsFullscreenMode = false,
-                CultureCode = defaultLanguageCode,
+                CultureCode = DefaultLanguageCode,
+                RenderMode = RenderMode.WebAssembly,
             };
         }
 

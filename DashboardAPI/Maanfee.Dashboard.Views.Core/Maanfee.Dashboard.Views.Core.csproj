@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Maanfee.Dashboard.Resources" Version="8.277.0" />
+    <PackageReference Include="Maanfee.Dashboard.Domain" Version="8.277.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Maanfee.Dashboard.Core\Maanfee.Dashboard.Core.csproj" />
+    <ProjectReference Include="..\Maanfee.Dashboard.Resources\Maanfee.Dashboard.Resources.csproj" />
   </ItemGroup>
 
 </Project>

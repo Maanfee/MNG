@@ -1,4 +1,7 @@
-﻿using Maanfee.Dashboard.Views.Core;
+﻿using Maanfee.Dashboard.Resources;
+using Maanfee.Dashboard.Views.Core;
+using MudBlazor;
+using MudBlazor.Utilities;
 
 namespace Maanfee.Dashboard.Client.Layout
 {
@@ -9,7 +12,11 @@ namespace Maanfee.Dashboard.Client.Layout
             await base.OnInitializedAsync();
 
             Fullscreen?.FullscreenChanged += OnFullscreenChange;
+
+            Snackbar?.Add($"{DashboardResource.StringWelcome}", Severity.Success);
         }
+
+        // ******************************************************
 
         private bool DrawerOpen = true;
 
@@ -68,6 +75,30 @@ namespace Maanfee.Dashboard.Client.Layout
         }
 
         // ******************************************************
+
+        #region - Theme Manager -
+
+        private bool IsThemeManagerOpen;
+
+        protected async Task OnThemingDrawerOpenChanged(bool state)
+        {
+            IsThemeManagerOpen = state;
+            // Save for fullscreen mode
+            if (!state)
+            {
+                await LocalConfiguration!.SetConfigurationAsync();
+            }
+
+            await InvokeAsync(StateHasChanged);
+        }
+
+        private async Task UpdateUserPreferences(MudColor Color)
+        {
+            CurrentTheme = MaanfeeTheme.ThemeBuilder(Color);
+            await InvokeAsync(StateHasChanged);
+        }
+
+        #endregion
 
         //public void Dispose()
         //{

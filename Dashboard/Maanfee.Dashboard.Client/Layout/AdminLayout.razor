@@ -43,6 +43,10 @@
             </MudContainer>
         </MudMainContent>
         @*************************************@
+        <ThemesMenu UserPreferencesChanged="UpdateUserPreferences"
+                    ThemingDrawerOpen="IsThemeManagerOpen" ThemingDrawerOpenChanged="OnThemingDrawerOpenChanged" />
+        <ThemesButton OnClick="@(() => IsThemeManagerOpen = true)" />
+        @*************************************@
     </MudLayout>
 </MudRTLProvider>
 

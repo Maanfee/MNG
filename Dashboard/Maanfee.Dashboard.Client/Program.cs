@@ -14,7 +14,7 @@ builder.Services.AddMaanfeeDashboardServiceManager();
 var host = builder.Build();
 
 var Config = host.Services.GetRequiredService<LocalConfigurationService>();
-await Config.InitConfigurationAsync(LanguageService.SupportedCountry.US);
+await Config.InitConfigurationAsync(LanguageManager.SupportedCountry.US);
 await InitCultureAsync(builder.Services);
 
 await host.RunAsync();

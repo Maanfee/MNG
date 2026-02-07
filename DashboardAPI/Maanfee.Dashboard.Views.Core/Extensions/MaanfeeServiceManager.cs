@@ -16,8 +16,7 @@ namespace Maanfee.Dashboard
 
             services.AddMudServices(config =>
             {
-                config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;
-
+                config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomEnd;
                 config.SnackbarConfiguration.PreventDuplicates = false;
                 config.SnackbarConfiguration.NewestOnTop = false;
                 config.SnackbarConfiguration.ShowCloseIcon = false;

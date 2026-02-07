@@ -2,7 +2,7 @@
 
 namespace Maanfee.Dashboard.Views.Core
 {
-    public static class LanguageService
+    public static class LanguageManager
     {
         public enum SupportedCountry
         {
