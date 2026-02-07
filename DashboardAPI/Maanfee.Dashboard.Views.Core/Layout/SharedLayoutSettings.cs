@@ -17,6 +17,27 @@ namespace Maanfee.Dashboard.Views.Core
        
         public static string CultureCode { get; set; } = LanguageManager.GetCultureCode(LanguageManager.SupportedCountry.US);
 
-        public static RenderMode RenderMode { get; set; }
+        // ***********************************
+
+        private static RenderMode _renderMode = RenderMode.WebAssembly;
+
+        public static RenderMode RenderMode
+        {
+            get => _renderMode;
+            set
+            {
+                if (_renderMode != value)
+                {
+                    _renderMode = value;
+                    OnRenderModeChanged?.Invoke();
+                }
+            }
+        }
+
+        public static event Action? OnRenderModeChanged;
+
+        // ***********************************
+
+
     }
 }

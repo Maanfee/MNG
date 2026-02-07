@@ -1,4 +1,5 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
+@implements IDisposable
 
 <style>
 
@@ -73,7 +74,8 @@
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
-                    <MudSelect @bind-Value="SharedLayoutSettings.RenderMode" Variant="Variant.Outlined" Dense="true">
+                    <MudSelect @bind-Value="SelectedRenderMode" Variant="Variant.Outlined"
+                               Dense="true" T="RenderMode">
                         @foreach (var item in Enum.GetValues(typeof(RenderMode)).Cast<RenderMode>())
                         {
                             <MudSelectItem Value="item">@item</MudSelectItem>
@@ -87,6 +89,16 @@
 </CascadingValue>
 
 @code {
+
+    protected override void OnInitialized()
+    {
+        SharedLayoutSettings.OnRenderModeChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        SharedLayoutSettings.OnRenderModeChanged -= StateHasChanged;
+    }
 
     [EditorRequired][Parameter] public bool ThemingDrawerOpen { get; set; }
 
@@ -132,6 +144,27 @@
     }
 
     [EditorRequired][Parameter] public EventCallback<MudColor> UserPreferencesChanged { get; set; }
+
+    // **************************************
+
+    private RenderMode SelectedRenderMode
+    {
+        get => SharedLayoutSettings.RenderMode;
+        set
+        {
+            if (SharedLayoutSettings.RenderMode != value)
+            {
+                SharedLayoutSettings.RenderMode = value;
+                Task.Run(async () => await ApplyRenderModeChange());
+            }
+        }
+    }
+
+    private async Task ApplyRenderModeChange()
+    {
+        await LocalConfiguration.SetConfigurationAsync();
+        Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+    }
 
     // **************************************
 

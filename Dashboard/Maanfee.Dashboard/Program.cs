@@ -1,7 +1,5 @@
 using Maanfee.Dashboard;
-using Maanfee.Dashboard.Client.Pages;
 using Maanfee.Dashboard.Components;
-using Maanfee.Dashboard.Views.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
