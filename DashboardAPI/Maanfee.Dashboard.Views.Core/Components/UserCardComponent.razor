@@ -1,0 +1,37 @@
+﻿@namespace Maanfee.Dashboard.Views.Core
+
+<MudCard Elevation="0" Square="true" Class="@Class">
+	<MudCardHeader>
+		<CardHeaderAvatar>
+			@* <MudAvatar Style="height:50px; width:50px;">
+				<MudImage Src="@AccountStateContainer.Avatar" />
+			</MudAvatar> *@
+			<MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Icons</MudText>
+		</CardHeaderAvatar>
+		<CardHeaderContent>
+			@* <MudText Typo="Typo.body2">@AccountStateContainer.Name</MudText>
+			<MudText Typo="Typo.caption">@AccountStateContainer.PersonalCode</MudText> *@
+			<MudText Typo="Typo.h6" Class="px-4">Material</MudText>
+		</CardHeaderContent>
+	</MudCardHeader>
+	<MudDivider DividerType="DividerType.FullWidth" />
+</MudCard>
+ 
+@code {
+
+	[Parameter]
+	public string? Class { get; set; }
+
+	// protected override void OnInitialized()
+	// {
+	// 	AccountStateContainer.OnChange += StateHasChanged;
+	// }
+
+	//private void ChangePropertyValue()
+	//{
+	//	StateHasChanged();
+	//}
+
+	// ******************************************************
+
+}

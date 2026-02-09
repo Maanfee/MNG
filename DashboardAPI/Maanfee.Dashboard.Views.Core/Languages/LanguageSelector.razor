@@ -1,5 +1,4 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
-@using System.Globalization
 
 <MudMenu Icon="@Icons.Material.Outlined.Translate" Color="Color.Inherit"
          AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.BottomCenter" Dense="true">
@@ -7,18 +6,39 @@
     {
         <MudMenuItem OnClick="(() => ChangeLanguageAsync(item))">@item.DisplayName</MudMenuItem>
     }
+    <MudDivider DividerType="DividerType.FullWidth" />
+    <MudMenuItem OnClick="(() => OpenCultureInformationDialog())">@DashboardResource.StringCultureInformation</MudMenuItem>
 </MudMenu>
 
-    @code {
+@code {
 
     private async Task ChangeLanguageAsync(CultureInfo Culture)
     {
         SharedLayoutSettings.CultureCode = Culture.Name;
         SharedLayoutSettings.IsRTL = Culture.TextInfo.IsRightToLeft;
-        StateHasChanged();
 
         await LocalConfiguration.SetConfigurationAsync();
-        
+
         Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
     }
+
+    #region - Culture Information -
+
+    private async Task OpenCultureInformationDialog()
+    {
+        DialogParameters DialogParameters = new DialogParameters();
+
+        var dialog = await Dialog.ShowAsync<DialogCultureInformation>(string.Empty, DialogParameters,
+            new DialogOptions()
+            {
+                NoHeader = true,
+                MaxWidth = MaxWidth.Medium,
+                FullWidth = true,
+                Position = DialogPosition.Center,
+                BackgroundClass = "Dialog-Blur",
+                CloseOnEscapeKey = true,
+            });
+    }
+
+    #endregion
 }

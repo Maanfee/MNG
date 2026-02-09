@@ -4,15 +4,17 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <!--**********************************************-->
 
-  <ItemGroup>
-    <PackageReference Include="Maanfee.Dashboard.Domain" Version="8.277.0" />
-  </ItemGroup>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Maanfee.Dashboard.Core\Maanfee.Dashboard.Core.csproj" />
     <ProjectReference Include="..\Maanfee.Dashboard.Resources\Maanfee.Dashboard.Resources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Overlays\" />
   </ItemGroup>
 
 </Project>

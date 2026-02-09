@@ -645,7 +645,10 @@
   <data name="StringAllItemsText" xml:space="preserve">
     <value>All</value>
   </data>
-  <data name="StringRenderMode" xml:space="preserve">
-    <value>Render Mode</value>
+  <data name="StringFonts" xml:space="preserve">
+    <value>Fonts</value>
+  </data>
+  <data name="StringCultureInformation" xml:space="preserve">
+    <value>Culture Information</value>
   </data>
 </root>

@@ -1,5 +1,4 @@
 ﻿using MudBlazor;
-using MudBlazor.Utilities;
 
 namespace Maanfee.Dashboard.Views.Core
 {
@@ -9,14 +8,14 @@ namespace Maanfee.Dashboard.Views.Core
 
         public bool IsDarkMode { get; set; }
 
-        public MudColor ThemeColor { get; set; } = new PaletteLight().Primary;
-
         public string? CurrentVersion { get; set; }
 
         public bool IsFullscreenMode { get; set; }
 
         public string CultureCode { get; set; } = LanguageManager.GetCultureCode(LanguageManager.SupportedCountry.US);
 
-        public RenderMode RenderMode { get; set; }
+        public MudTheme Theme { get; set; } = new MudTheme();
+
+        public Font? SelectedFont { get; set; }
     }
 }

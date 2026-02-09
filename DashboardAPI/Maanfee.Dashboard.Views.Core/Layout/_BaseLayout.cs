@@ -21,13 +21,12 @@ namespace Maanfee.Dashboard.Views.Core
         [Inject]
         protected ISnackbar? Snackbar { get; set; }
 
-        protected virtual MudTheme? CurrentTheme { get; set; }
-
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
-            CurrentTheme = MaanfeeTheme.ThemeBuilder(SharedLayoutSettings.ThemeColor);
+            SharedLayoutSettings.Theme = MaanfeeTheme.ThemeBuilder(SharedLayoutSettings.Theme.PaletteLight.Primary
+                , SharedLayoutSettings.SelectedFont?.FontName);
 
             SnakbarDirectionConfiguration();
         }

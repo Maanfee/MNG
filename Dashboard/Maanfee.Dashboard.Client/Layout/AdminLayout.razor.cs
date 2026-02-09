@@ -1,7 +1,6 @@
 ﻿using Maanfee.Dashboard.Resources;
 using Maanfee.Dashboard.Views.Core;
 using MudBlazor;
-using MudBlazor.Utilities;
 
 namespace Maanfee.Dashboard.Client.Layout
 {
@@ -35,8 +34,6 @@ namespace Maanfee.Dashboard.Client.Layout
 
             await LocalConfiguration!.SetConfigurationAsync();
         }
-
-        // ******************************************************
 
         private async Task ToggleDirection()
         {
@@ -92,9 +89,9 @@ namespace Maanfee.Dashboard.Client.Layout
             await InvokeAsync(StateHasChanged);
         }
 
-        private async Task UpdateUserPreferences(MudColor Color)
+        private async Task UpdateUserPreferences(MudTheme Theme)
         {
-            CurrentTheme = MaanfeeTheme.ThemeBuilder(Color);
+            //SharedLayoutSettings.Theme = MaanfeeTheme.ThemeBuilder(Color, SharedLayoutSettings.SelectedFont?.FontName);
             await InvokeAsync(StateHasChanged);
         }
 
@@ -104,5 +101,6 @@ namespace Maanfee.Dashboard.Client.Layout
         //{
         //    Fullscreen.OnFullscreenChange -= OnFullscreenChange;
         //}
+    
     }
 }

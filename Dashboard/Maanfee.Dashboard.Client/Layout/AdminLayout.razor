@@ -1,15 +1,15 @@
 ﻿@inherits _BaseLayout
 
-<MudThemeProvider Theme="CurrentTheme" IsDarkMode="@SharedLayoutSettings.IsDarkMode" />
+<MudThemeProvider Theme="@SharedLayoutSettings.Theme" IsDarkMode="@SharedLayoutSettings.IsDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudRTLProvider RightToLeft="@SharedLayoutSettings.IsRTL">
     <MudLayout>
-        <MudAppBar Elevation="25">
-            <MudIcon Icon="@Icons.Custom.Brands.MicrosoftVisualStudio" Size="Size.Large" />
-            <MudText Typo="Typo.h6" Class="ml-4">@ApplicationResource.StringApplicationName</MudText>
+        <MudAppBar Elevation="1">
+            @* <MudIcon Icon="@Icons.Custom.Brands.MicrosoftVisualStudio" Size="Size.Large" /> *@
+            <MudText Typo="Typo.h6" Class="ml-2">@ApplicationResource.StringApplicationName</MudText>
             <MudToolBar Gutters="false">
                 <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@(() => DrawerOpen = !DrawerOpen)" Class="ml-3" />
             </MudToolBar>
@@ -34,7 +34,7 @@
             @* ********************************** *@
         </MudAppBar>
         @*************************************@
-        <MudDrawer @bind-Open="DrawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+        <MudDrawer @bind-Open="DrawerOpen" Elevation="5" ClipMode="DrawerClipMode.Always">
             <_Sidebar />
         </MudDrawer>
         <MudMainContent>

@@ -8,8 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\App.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\App.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Maanfee.Dashboard.Client\Maanfee.Dashboard.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.2" />
   </ItemGroup>
 
 </Project>

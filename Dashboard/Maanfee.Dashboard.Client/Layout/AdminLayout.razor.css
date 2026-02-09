@@ -20,3 +20,8 @@
         top: 0.5rem;
     }
 
+/* ***************************************** */
+
+.Dialog-Blur {
+    backdrop-filter: blur(10px);
+}

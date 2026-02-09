@@ -645,7 +645,10 @@
   <data name="StringAllItemsText" xml:space="preserve">
     <value>همه</value>
   </data>
-  <data name="StringRenderMode" xml:space="preserve">
-    <value>حالت پردازش</value>
+  <data name="StringFonts" xml:space="preserve">
+    <value>فونت</value>
+  </data>
+  <data name="StringCultureInformation" xml:space="preserve">
+    <value>اطلاعات فرهنگی</value>
   </data>
 </root>

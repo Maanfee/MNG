@@ -556,6 +556,15 @@ namespace Maanfee.Dashboard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Culture Information.
+        /// </summary>
+        public static string StringCultureInformation {
+            get {
+                return ResourceManager.GetString("StringCultureInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current password.
         /// </summary>
         public static string StringCurrentPassword {
@@ -741,6 +750,15 @@ namespace Maanfee.Dashboard.Resources {
         public static string StringFixedHeader {
             get {
                 return ResourceManager.GetString("StringFixedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fonts.
+        /// </summary>
+        public static string StringFonts {
+            get {
+                return ResourceManager.GetString("StringFonts", resourceCulture);
             }
         }
         
@@ -1191,15 +1209,6 @@ namespace Maanfee.Dashboard.Resources {
         public static string StringReload {
             get {
                 return ResourceManager.GetString("StringReload", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Render Mode.
-        /// </summary>
-        public static string StringRenderMode {
-            get {
-                return ResourceManager.GetString("StringRenderMode", resourceCulture);
             }
         }
         

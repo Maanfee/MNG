@@ -1,0 +1,17 @@
+﻿@namespace Maanfee.Dashboard.Views.Core
+
+<PageTitle>@PageTitle</PageTitle>
+
+<CascadingValue Value="this" IsFixed>
+    @ChildContent
+</CascadingValue>
+
+@code {
+
+    [Parameter]
+    public string PageTitle { get; set; } = "Title";
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+}

@@ -1,5 +1,4 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
-@implements IDisposable
 
 <style>
 
@@ -53,8 +52,8 @@
                 <MudCardContent>
                     @foreach (var color in SupportedThemeColors)
                     {
-                        <button class="@(color.Value == SharedLayoutSettings.ThemeColor ? "maanfee-theme-box-xs maanfee-themeColors active" : "maanfee-theme-box-xs")"
-                                style="@($"background: {color.Value};")" onclick="@(() => UpdateThemePrimaryColor(color))"></button>
+                        <button class="@(color.Value == SharedLayoutSettings.Theme.PaletteLight.Primary ? "maanfee-theme-box-xs maanfee-themeColors active" : "maanfee-theme-box-xs")"
+                                style="@($"background: {color.Value};")" onclick="@(() => UpdateThemePrimaryColor(color, SharedLayoutSettings.SelectedFont?.FontName))"></button>
                     }
                 </MudCardContent>
             </MudCard>
@@ -69,16 +68,16 @@
                 <MudCardHeader>
                     <CardHeaderContent>
                         <b>
-                            <MudText Typo="Typo.caption" Color="Color.Primary">@DashboardResource.StringRenderMode</MudText>
+                            <MudText Typo="Typo.caption" Color="Color.Primary">@DashboardResource.StringFonts</MudText>
                         </b>
                     </CardHeaderContent>
                 </MudCardHeader>
                 <MudCardContent>
-                    <MudSelect @bind-Value="SelectedRenderMode" Variant="Variant.Outlined"
-                               Dense="true" T="RenderMode">
-                        @foreach (var item in Enum.GetValues(typeof(RenderMode)).Cast<RenderMode>())
+                    <MudSelect T="string" Variant="Variant.Outlined" Dense="true"
+                               Value="@GetFont()" ValueChanged="@( x => UpdateThemePrimaryColor(SharedLayoutSettings.Theme.PaletteLight.Primary, x))">
+                        @foreach (var item in MaanfeeTheme.GetSupportedFonts().Where(x => x.IsRTL == SharedLayoutSettings.IsRTL))
                         {
-                            <MudSelectItem Value="item">@item</MudSelectItem>
+                            <MudSelectItem Value="@item.FontName">@item.FontName</MudSelectItem>
                         }
                     </MudSelect>
                 </MudCardContent>
@@ -89,16 +88,6 @@
 </CascadingValue>
 
 @code {
-
-    protected override void OnInitialized()
-    {
-        SharedLayoutSettings.OnRenderModeChanged += StateHasChanged;
-    }
-
-    public void Dispose()
-    {
-        SharedLayoutSettings.OnRenderModeChanged -= StateHasChanged;
-    }
 
     [EditorRequired][Parameter] public bool ThemingDrawerOpen { get; set; }
 
@@ -132,40 +121,33 @@
         Colors.Yellow.Default,
     };
 
-    private async Task UpdateThemePrimaryColor(MudColor color)
+    private async Task UpdateThemePrimaryColor(MudColor color, string? newFont)
     {
         PrimaryColor = color;
-        await UserPreferencesChanged.InvokeAsync(color);
+        SharedLayoutSettings.SelectedFont = MaanfeeTheme.GetSupportedFonts().FirstOrDefault(x => x.FontName == newFont);
+        SharedLayoutSettings.Theme = MaanfeeTheme.ThemeBuilder(PrimaryColor, SharedLayoutSettings.SelectedFont?.FontName);
+
+        await UserPreferencesChanged.InvokeAsync(SharedLayoutSettings.Theme);
         // *******************
-        SharedLayoutSettings.ThemeColor = color.Value;
         await LocalConfiguration.SetConfigurationAsync();
 
         StateHasChanged();
     }
 
-    [EditorRequired][Parameter] public EventCallback<MudColor> UserPreferencesChanged { get; set; }
+    [EditorRequired][Parameter] public EventCallback<MudTheme> UserPreferencesChanged { get; set; }
 
     // **************************************
 
-    private RenderMode SelectedRenderMode
+    private string? GetFont()
     {
-        get => SharedLayoutSettings.RenderMode;
-        set
+        if (SharedLayoutSettings.SelectedFont?.IsRTL == SharedLayoutSettings.IsRTL)
         {
-            if (SharedLayoutSettings.RenderMode != value)
-            {
-                SharedLayoutSettings.RenderMode = value;
-                Task.Run(async () => await ApplyRenderModeChange());
-            }
+            return SharedLayoutSettings.SelectedFont.FontName;
+        }
+        else
+        {
+            return MaanfeeTheme.DefaultFont().FontName;
         }
     }
-
-    private async Task ApplyRenderModeChange()
-    {
-        await LocalConfiguration.SetConfigurationAsync();
-        Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
-    }
-
-    // **************************************
 
 }

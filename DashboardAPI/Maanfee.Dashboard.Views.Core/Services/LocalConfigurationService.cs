@@ -23,21 +23,21 @@ namespace Maanfee.Dashboard.Views.Core
 
                 SharedLayoutSettings.IsDarkMode = LayoutSettings.IsDarkMode;
                 SharedLayoutSettings.IsRTL = LayoutSettings.IsRTL;
-                SharedLayoutSettings.ThemeColor = new PaletteLight().Primary.Value;
                 SharedLayoutSettings.CurrentVersion = LayoutSettings.CurrentVersion;
                 SharedLayoutSettings.IsFullscreenMode = LayoutSettings.IsFullscreenMode;
                 SharedLayoutSettings.CultureCode = LayoutSettings.CultureCode;
-                SharedLayoutSettings.RenderMode = LayoutSettings.RenderMode;
+                SharedLayoutSettings.Theme = LayoutSettings.Theme;
+                SharedLayoutSettings.SelectedFont = LayoutSettings.SelectedFont;
             }
             else
             {
                 SharedLayoutSettings.IsDarkMode = StoredConfiguration.IsDarkMode;
                 SharedLayoutSettings.IsRTL = StoredConfiguration.IsRTL;
-                SharedLayoutSettings.ThemeColor = StoredConfiguration.ThemeColor;
                 SharedLayoutSettings.CurrentVersion = StoredConfiguration.CurrentVersion;
                 SharedLayoutSettings.IsFullscreenMode = StoredConfiguration.IsFullscreenMode;
                 SharedLayoutSettings.CultureCode = StoredConfiguration.CultureCode;
-                SharedLayoutSettings.RenderMode = StoredConfiguration.RenderMode;
+                SharedLayoutSettings.Theme = StoredConfiguration.Theme;
+                SharedLayoutSettings.SelectedFont = StoredConfiguration.SelectedFont;
             }
         }
 
@@ -47,11 +47,11 @@ namespace Maanfee.Dashboard.Views.Core
             {
                 IsDarkMode = SharedLayoutSettings.IsDarkMode,
                 IsRTL = SharedLayoutSettings.IsRTL,
-                ThemeColor = SharedLayoutSettings.ThemeColor,
                 CurrentVersion = SharedLayoutSettings.CurrentVersion,
                 IsFullscreenMode = SharedLayoutSettings.IsFullscreenMode,
                 CultureCode = SharedLayoutSettings.CultureCode,
-                RenderMode = SharedLayoutSettings.RenderMode,
+                Theme = SharedLayoutSettings.Theme,
+                SelectedFont = SharedLayoutSettings.SelectedFont,
             });
         }
 
@@ -61,11 +61,11 @@ namespace Maanfee.Dashboard.Views.Core
             {
                 IsDarkMode = false,
                 IsRTL = false,
-                ThemeColor = new PaletteLight().Primary.Value,
                 CurrentVersion = string.Empty,
                 IsFullscreenMode = false,
                 CultureCode = DefaultLanguageCode,
-                RenderMode = RenderMode.WebAssembly,
+                Theme = MaanfeeTheme.ThemeBuilder(new PaletteLight().Primary, MaanfeeTheme.DefaultFont().FontName),
+                SelectedFont = MaanfeeTheme.DefaultFont(),
             };
         }
 
