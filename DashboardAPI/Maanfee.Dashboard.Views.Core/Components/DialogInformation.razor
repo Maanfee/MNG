@@ -1,10 +1,9 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
-@inherits _BaseView
+@* InformationDialog.razor *@
 
 <MudRTLProvider RightToLeft="@SharedLayoutSettings.IsRTL">
     <MudDialog>
         <DialogContent>
-
             <MudCard Outlined="true" Square="true" Class="mt-4 mb-4">
                 <MudCardHeader>
                     <CardHeaderContent>
@@ -24,12 +23,16 @@
                 <MudCardContent>
                     <MudStack Spacing="3">
                         <p>
-                            <MudText Typo="Typo.button" Color="Color.Primary">File Name:</MudText>
-                            <MudText Typo="Typo.caption"> @ComponentName</MudText>
+                            <MudText Typo="Typo.button" Color="Color.Primary">Name:</MudText>
+                            <MudText Typo="Typo.caption"> @ContentType?.Name</MudText>
                         </p>
                         <p>
-                            <MudText Typo="Typo.button" Color="Color.Primary">File Path:</MudText>
-                            <MudText Typo="Typo.caption"> @ComponentFullName</MudText>
+                            <MudText Typo="Typo.button" Color="Color.Primary">FullName:</MudText>
+                            <MudText Typo="Typo.caption"> @ContentType?.FullName</MudText>
+                        </p>
+                        <p>
+                            <MudText Typo="Typo.button" Color="Color.Primary">Namespace:</MudText>
+                            <MudText Typo="Typo.caption"> @ContentType?.Namespace</MudText>
                         </p>
                     </MudStack>
                 </MudCardContent>
@@ -51,9 +54,6 @@
     // ***************************************************
 
     [Parameter]
-    public string? ComponentName { get; set; }
-
-    [Parameter]
-    public string? ComponentFullName { get; set; }
+    public Type? ContentType { get; set; }
 
 }

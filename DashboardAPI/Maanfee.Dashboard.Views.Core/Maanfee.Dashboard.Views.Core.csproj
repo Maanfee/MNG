@@ -13,8 +13,4 @@
     <ProjectReference Include="..\Maanfee.Dashboard.Resources\Maanfee.Dashboard.Resources.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Overlays\" />
-  </ItemGroup>
-
 </Project>

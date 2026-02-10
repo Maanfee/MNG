@@ -1,7 +1,8 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
 @inherits _BaseView
+@* DialogCultureInformation.razor *@
 
-<MaanfeeDashboardDialog @ref="MDialog" IsLoaded="IsLoaded" Title="@DashboardResource.StringCultureInformation">
+<MaanfeeDashboardDialog @ref="MDialog" Title="@DashboardResource.StringCultureInformation" IsDialogLoaded="@IsLoaded">
     <MaanfeeDashboardDialogContent>
         <p><strong>Current Culture:</strong> @CultureInfo.CurrentCulture.Name</p>
         <p><strong>Current UI Culture:</strong> @CultureInfo.CurrentUICulture.Name</p>
@@ -27,6 +28,13 @@
 
     // *****************************************************
 
-    bool IsLoaded = true;
-}
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
 
+        await Task.Delay(1000);
+
+        IsLoaded = true;
+    }
+
+}

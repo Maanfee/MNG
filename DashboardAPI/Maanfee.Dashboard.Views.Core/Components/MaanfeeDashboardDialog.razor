@@ -1,5 +1,6 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
 @inherits _BaseView
+@* MaanfeeDashboardDialog.razor *@
 
 <style>
     .mud-card-header {
@@ -15,9 +16,9 @@
 <MudRTLProvider RightToLeft="@SharedLayoutSettings.IsRTL">
     <MudDialog OnKeyDown="@OnKeyDown" @attributes="AdditionalAttributes">
         <DialogContent>
-            @if (!IsLoaded)
+            @if (!IsDialogLoaded)
             {
-                @*  <DashboardOverlay Random="true" /> *@
+                 <SVGOverlay Random="true" />
             }
             else
             {
@@ -84,7 +85,7 @@
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
     [Parameter]
-    public bool IsLoaded { get; set; } = true;
+    public bool IsDialogLoaded { get; set; }
 
     [Parameter]
     public string? Title { get; set; }
@@ -105,9 +106,21 @@
     [Parameter]
     public EventCallback<KeyboardEventArgs> OnKeyDown { get; set; }
 
-    // protected override LocalConfigurationService? LocalConfiguration { get; set; }
-    // protected override LocalStorage? LocalStorage { get; set; }
-    // protected override NavigationManager? Navigation { get; set; }
-    // protected override IDialogService? Dialog { get; set; }
+    // ***************************************************
 
+    private async Task OpenInformationDialog()
+    {
+        DialogParameters DialogParameters = new DialogParameters();
+        DialogParameters.Add("ContentType", ContentType != null ? ContentType : null);
+
+        await Dialog!.ShowAsync<DialogInformation>(string.Empty, DialogParameters, new DialogOptions()
+        {
+            NoHeader = true,
+            MaxWidth = MaxWidth.Small,
+            FullWidth = true,
+            Position = DialogPosition.Center,
+            BackgroundClass = "Dialog-Blur",
+            CloseOnEscapeKey = true,
+        });
+    }
 }
