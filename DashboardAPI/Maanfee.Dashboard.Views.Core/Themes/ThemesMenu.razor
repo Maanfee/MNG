@@ -1,4 +1,5 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
+@inherits _BaseView
 
 <style>
 
@@ -129,7 +130,7 @@
 
         await UserPreferencesChanged.InvokeAsync(SharedLayoutSettings.Theme);
         // *******************
-        await LocalConfiguration.SetConfigurationAsync();
+        await LocalConfiguration!.SetConfigurationAsync();
 
         StateHasChanged();
     }

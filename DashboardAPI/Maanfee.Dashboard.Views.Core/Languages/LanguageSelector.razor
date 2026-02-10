@@ -1,4 +1,5 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
+@inherits _BaseView
 
 <MudMenu Icon="@Icons.Material.Outlined.Translate" Color="Color.Inherit"
          AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.BottomCenter" Dense="true">
@@ -17,9 +18,9 @@
         SharedLayoutSettings.CultureCode = Culture.Name;
         SharedLayoutSettings.IsRTL = Culture.TextInfo.IsRightToLeft;
 
-        await LocalConfiguration.SetConfigurationAsync();
+        await LocalConfiguration!.SetConfigurationAsync();
 
-        Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+        Navigation!.NavigateTo(Navigation.Uri, forceLoad: true);
     }
 
     #region - Culture Information -
@@ -28,7 +29,7 @@
     {
         DialogParameters DialogParameters = new DialogParameters();
 
-        var dialog = await Dialog.ShowAsync<DialogCultureInformation>(string.Empty, DialogParameters,
+        var dialog = await Dialog!.ShowAsync<DialogCultureInformation>(string.Empty, DialogParameters,
             new DialogOptions()
             {
                 NoHeader = true,
