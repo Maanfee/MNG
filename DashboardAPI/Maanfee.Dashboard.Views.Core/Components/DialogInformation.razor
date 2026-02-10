@@ -24,15 +24,15 @@
                     <MudStack Spacing="3">
                         <p>
                             <MudText Typo="Typo.button" Color="Color.Primary">Name:</MudText>
-                            <MudText Typo="Typo.caption"> @ContentType?.Name</MudText>
+                            <MudText Typo="Typo.caption"> @DialogContentType?.Name</MudText>
                         </p>
                         <p>
                             <MudText Typo="Typo.button" Color="Color.Primary">FullName:</MudText>
-                            <MudText Typo="Typo.caption"> @ContentType?.FullName</MudText>
+                            <MudText Typo="Typo.caption"> @DialogContentType?.FullName</MudText>
                         </p>
                         <p>
                             <MudText Typo="Typo.button" Color="Color.Primary">Namespace:</MudText>
-                            <MudText Typo="Typo.caption"> @ContentType?.Namespace</MudText>
+                            <MudText Typo="Typo.caption"> @DialogContentType?.Namespace</MudText>
                         </p>
                     </MudStack>
                 </MudCardContent>
@@ -54,6 +54,6 @@
     // ***************************************************
 
     [Parameter]
-    public Type? ContentType { get; set; }
+    public Type? DialogContentType { get; set; }
 
 }

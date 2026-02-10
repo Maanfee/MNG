@@ -2,7 +2,7 @@
 @inherits _BaseView
 @* DialogCultureInformation.razor *@
 
-<MaanfeeDashboardDialog @ref="MDialog" Title="@DashboardResource.StringCultureInformation" IsDialogLoaded="@IsLoaded">
+<MaanfeeDashboardDialog @ref="MDialog" Title="@DashboardResource.StringCultureInformation" IsDialogLoaded="@IsLoaded" DialogContentType="@(this.GetType())">
     <MaanfeeDashboardDialogContent>
         <p><strong>Current Culture:</strong> @CultureInfo.CurrentCulture.Name</p>
         <p><strong>Current UI Culture:</strong> @CultureInfo.CurrentUICulture.Name</p>
@@ -32,7 +32,7 @@
     {
         await base.OnInitializedAsync();
 
-        await Task.Delay(1000);
+        await Task.Delay(500);
 
         IsLoaded = true;
     }

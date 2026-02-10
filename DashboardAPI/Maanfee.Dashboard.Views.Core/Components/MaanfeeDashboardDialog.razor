@@ -18,19 +18,19 @@
         <DialogContent>
             @if (!IsDialogLoaded)
             {
-                 <SVGOverlay Random="true" />
+                <SVGOverlay Random="true" />
             }
             else
             {
                 <MudCard Outlined="true" Square="true" Class="mt-4 mb-4">
                     <MudCardHeader>
                         <CardHeaderAvatar>
-                            <MudAvatar Color="Color.Secondary">I</MudAvatar>
+                            <MudAvatar Color="Color.Secondary" Size="Size.Small"></MudAvatar>
                         </CardHeaderAvatar>
                         <CardHeaderContent>
-                            @if (MaanfeeDashboardHeaderContent != null)
+                            @if (MaanfeeDashboardDialogHeaderContent != null)
                             {
-                                @MaanfeeDashboardHeaderContent
+                                @MaanfeeDashboardDialogHeaderContent
                             }
                             else
                             {
@@ -60,67 +60,9 @@
                         {
                             @MaanfeeDashboardDialogActionContent
                         }
-                        @*  <MudButton Variant="Variant.Text" Color="Color.Primary">Read more</MudButton> *@
-                        @*  <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" /> *@
-                        @*     <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" /> *@
                     </MudCardActions>
                 </MudCard>
             }
         </DialogContent>
     </MudDialog>
 </MudRTLProvider>
-
-@code {
-
-    [CascadingParameter]
-    public IMudDialogInstance? MudDialog { get; set; }
-
-    public void Close() => MudDialog?.Close();
-
-    public void Close(DialogResult result) => MudDialog?.Close(result);
-
-    // ***************************************************
-
-    [Parameter(CaptureUnmatchedValues = true)]
-    public Dictionary<string, object>? AdditionalAttributes { get; set; }
-
-    [Parameter]
-    public bool IsDialogLoaded { get; set; }
-
-    [Parameter]
-    public string? Title { get; set; }
-
-    // ***************************************************
-
-    [Parameter]
-    public RenderFragment? MaanfeeDashboardHeaderContent { get; set; }
-
-    [Parameter]
-    public RenderFragment? MaanfeeDashboardDialogContent { get; set; }
-
-    [Parameter]
-    public RenderFragment? MaanfeeDashboardDialogActionContent { get; set; }
-
-    // ********************* Events *********************
-
-    [Parameter]
-    public EventCallback<KeyboardEventArgs> OnKeyDown { get; set; }
-
-    // ***************************************************
-
-    private async Task OpenInformationDialog()
-    {
-        DialogParameters DialogParameters = new DialogParameters();
-        DialogParameters.Add("ContentType", ContentType != null ? ContentType : null);
-
-        await Dialog!.ShowAsync<DialogInformation>(string.Empty, DialogParameters, new DialogOptions()
-        {
-            NoHeader = true,
-            MaxWidth = MaxWidth.Small,
-            FullWidth = true,
-            Position = DialogPosition.Center,
-            BackgroundClass = "Dialog-Blur",
-            CloseOnEscapeKey = true,
-        });
-    }
-}
