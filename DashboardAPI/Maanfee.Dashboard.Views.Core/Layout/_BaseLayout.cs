@@ -7,19 +7,22 @@ namespace Maanfee.Dashboard.Views.Core
     public class _BaseLayout : LayoutComponentBase
     {
         [Inject]
-        protected LocalConfigurationService? LocalConfiguration { get; set; }
+        protected virtual LocalConfigurationService? LocalConfiguration { get; set; }
 
         [Inject]
-        protected NavigationManager? Navigation { get; set; }
+        protected virtual NavigationManager? Navigation { get; set; }
 
         [Inject]
-        protected LocalStorage? LocalStorage { get; set; }
+        protected virtual LocalStorage? LocalStorage { get; set; }
 
         [Inject]
-        protected Fullscreen? Fullscreen { get; set; }
+        protected virtual Fullscreen? Fullscreen { get; set; }
 
         [Inject]
-        protected ISnackbar? Snackbar { get; set; }
+        protected virtual ISnackbar? Snackbar { get; set; }
+
+        [Inject]
+        protected virtual IDialogService? Dialog { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

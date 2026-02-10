@@ -1,4 +1,16 @@
 ﻿@namespace Maanfee.Dashboard.Views.Core
+@inherits _BaseView
+
+<style>
+    .mud-card-header {
+        padding: 8px 16px 8px 16px !important;
+    }
+
+    .mud-toolbar-gutters {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+</style>
 
 <MudRTLProvider RightToLeft="@SharedLayoutSettings.IsRTL">
     <MudDialog OnKeyDown="@OnKeyDown" @attributes="AdditionalAttributes">
@@ -9,22 +21,49 @@
             }
             else
             {
-                <MudPaper Elevation="6" Outlined="true" Square="true" Class="mt-4 mb-4">
-                    <MudToolBar Dense>
-                        <MudText Color="Color.Primary">
-                            @Title
-                        </MudText>
-                        <MudSpacer />
-                        @MaanfeeDashboardDialogActionContent
-                        <MudTooltip Text="@DashboardResource.StringCancel" Color="Color.Tertiary" Arrow>
-                            <MudIconButton OnClick="@(() => Close())" Icon="@Icons.Material.Filled.Close" Color="Color.Error" />
-                        </MudTooltip>
-                    </MudToolBar>
+                <MudCard Outlined="true" Square="true" Class="mt-4 mb-4">
+                    <MudCardHeader>
+                        <CardHeaderAvatar>
+                            <MudAvatar Color="Color.Secondary">I</MudAvatar>
+                        </CardHeaderAvatar>
+                        <CardHeaderContent>
+                            @if (MaanfeeDashboardHeaderContent != null)
+                            {
+                                @MaanfeeDashboardHeaderContent
+                            }
+                            else
+                            {
+                                <MudText Color="Color.Primary">
+                                    @Title
+                                </MudText>
+                            }
+                        </CardHeaderContent>
+                        <CardHeaderActions>
+                            <MudToolBar Dense WrapContent="true" Gutters="true">
+                                <MudTooltip Text="@DashboardResource.StringInformation" Color="Color.Tertiary" Arrow>
+                                    <MudIconButton OnClick="OpenInformationDialog" Icon="@Icons.Material.Filled.Settings" Color="Color.Success" Class="mt-2" />
+                                </MudTooltip>
+                                <MudTooltip Text="@DashboardResource.StringCancel" Color="Color.Tertiary" Arrow>
+                                    <MudIconButton OnClick="@(() => Close())" Icon="@Icons.Material.Filled.Close" Color="Color.Error" Class="mt-2" />
+                                </MudTooltip>
+                            </MudToolBar>
+                        </CardHeaderActions>
+                    </MudCardHeader>
                     <MudDivider DividerType="DividerType.FullWidth" />
                     <MudCardContent>
                         @MaanfeeDashboardDialogContent
                     </MudCardContent>
-                </MudPaper>
+                    <MudDivider DividerType="DividerType.FullWidth" />
+                    <MudCardActions>
+                        @if (MaanfeeDashboardDialogActionContent != null)
+                        {
+                            @MaanfeeDashboardDialogActionContent
+                        }
+                        @*  <MudButton Variant="Variant.Text" Color="Color.Primary">Read more</MudButton> *@
+                        @*  <MudIconButton Icon="@Icons.Material.Filled.Favorite" Color="Color.Default" /> *@
+                        @*     <MudIconButton Icon="@Icons.Material.Filled.Share" Color="Color.Default" /> *@
+                    </MudCardActions>
+                </MudCard>
             }
         </DialogContent>
     </MudDialog>
@@ -45,15 +84,18 @@
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
     [Parameter]
-    public RenderFragment? MaanfeeDashboardDialogContent { get; set; }
-
-    [Parameter]
     public bool IsLoaded { get; set; } = true;
-
-    // ********************* Title *********************
 
     [Parameter]
     public string? Title { get; set; }
+
+    // ***************************************************
+
+    [Parameter]
+    public RenderFragment? MaanfeeDashboardHeaderContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? MaanfeeDashboardDialogContent { get; set; }
 
     [Parameter]
     public RenderFragment? MaanfeeDashboardDialogActionContent { get; set; }
@@ -62,4 +104,5 @@
 
     [Parameter]
     public EventCallback<KeyboardEventArgs> OnKeyDown { get; set; }
+
 }

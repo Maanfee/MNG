@@ -651,4 +651,7 @@
   <data name="StringCultureInformation" xml:space="preserve">
     <value>اطلاعات فرهنگی</value>
   </data>
+  <data name="StringInformation" xml:space="preserve">
+    <value>اطلاعات</value>
+  </data>
 </root>

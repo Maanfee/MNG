@@ -826,6 +826,15 @@ namespace Maanfee.Dashboard.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string StringInformation {
+            get {
+                return ResourceManager.GetString("StringInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active.
         /// </summary>
         public static string StringIsActive {
