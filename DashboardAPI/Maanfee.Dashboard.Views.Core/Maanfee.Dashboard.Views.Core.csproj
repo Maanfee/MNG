@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Maanfee.Dashboard.Core\Maanfee.Dashboard.Core.csproj" />
     <ProjectReference Include="..\Maanfee.Dashboard.Resources\Maanfee.Dashboard.Resources.csproj" />
+    <!-- <ProjectReference Include="..\Maanfee.Dashboard.Domain\Maanfee.Dashboard.Domain.csproj" /> -->
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿@page "/"
-@using System.Globalization
-@inject NavigationManager Navigation
+@inherits _BaseView
+
+@attribute [Authorize]
 
 @* <style>
     
@@ -34,4 +35,3 @@
 
     </MudPaper>
 </MaanfeeDashboardPage>
-

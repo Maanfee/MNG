@@ -41,6 +41,9 @@
                         </CardHeaderContent>
                         <CardHeaderActions>
                             <MudToolBar Dense WrapContent="true" Gutters="true">
+                                <MudChip T="TimeSpan" Icon="@Icons.Material.Filled.Alarm" Color="Color.Error" Class="mt-2" Style="font-size:10px;">
+                                    @LoadingTime
+                                </MudChip>
                                 <MudTooltip Text="@DashboardResource.StringInformation" Color="Color.Tertiary" Arrow>
                                     <MudIconButton OnClick="OpenInformationDialog" Icon="@Icons.Material.Filled.Settings" Color="Color.Success" Class="mt-2" />
                                 </MudTooltip>

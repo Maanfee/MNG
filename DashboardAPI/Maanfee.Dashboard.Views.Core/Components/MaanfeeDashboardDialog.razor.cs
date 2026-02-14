@@ -1,11 +1,38 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor;
+using System.Diagnostics;
 
 namespace Maanfee.Dashboard.Views.Core
 {
     public partial class MaanfeeDashboardDialog : _BaseView
     {
+        protected override async Task OnInitializedAsync()
+        {
+            StartTimer();
+            await base.OnInitializedAsync();
+
+            IsLoaded = true;
+            StopTimer();
+        }
+
+        // ********************* Timer *********************
+
+        private Stopwatch _stopwatch = new Stopwatch();
+        private string LoadingTime = "00:00:000";
+
+        public void StartTimer() => _stopwatch.Start();
+        
+        public void StopTimer()
+        {
+            _stopwatch.Stop();
+            LoadingTime = TimeSpan.FromSeconds(_stopwatch.ElapsedMilliseconds).ToString(@"mm\:ss");
+        }
+
+        public void ResetTimer() => _stopwatch.Reset();
+
+        // ***************************************************
+
         [Parameter]
         public Type? DialogContentType { get; set; }
 

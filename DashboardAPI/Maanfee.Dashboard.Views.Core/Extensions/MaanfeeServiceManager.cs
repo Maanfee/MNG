@@ -30,7 +30,7 @@ namespace Maanfee.Dashboard
 
             // JsInterop
             services.AddMaanfeeJsInterop();
-          
+
             // CSR
             if (OperatingSystem.IsBrowser())
             {
