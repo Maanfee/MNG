@@ -11,10 +11,10 @@ namespace Maanfee.Dashboard.Client.Layout
             await base.OnInitializedAsync();
 
             Fullscreen?.FullscreenChanged += OnFullscreenChange;
-            if (SharedLayoutSettings.IsFullscreenMode)
-            {
-                await Fullscreen!.ToggleFullscreenAsync();
-            }
+            //if (SharedLayoutSettings.IsFullscreenMode)
+            //{
+            //    await Fullscreen!.ToggleFullscreenAsync();
+            //}
 
             Snackbar?.Add($"{DashboardResource.StringWelcome}", Severity.Success);
         }

@@ -1,5 +1,6 @@
 using Maanfee.Dashboard;
 using Maanfee.Dashboard.Components;
+using Maanfee.Dashboard.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddMaanfeeDashboardServiceManager();
+builder.Services.AddDatabaseConfigurations(builder.Configuration);
 
 var app = builder.Build();
 
@@ -23,6 +25,8 @@ else
 }
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseAntiforgery();
+
+app.AddServerConfigurations();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()

@@ -1,19 +1,24 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <!--**********************************************-->
-    <ScopedCssEnabled>true</ScopedCssEnabled>
-    <!--**********************************************-->
 
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Maanfee.Dashboard.Core\Maanfee.Dashboard.Core.csproj" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Maanfee.Dashboard.Domain\Maanfee.Dashboard.Domain.csproj" />
   </ItemGroup>
 
-</Project>
+  <ItemGroup>
+    <Folder Include="DefaultValues\" />
+  </ItemGroup>
 
+
+</Project>

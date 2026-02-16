@@ -5,7 +5,13 @@
   </Folder>
   <Folder Name="/DashboardAPI/">
     <Project Path="DashboardAPI/Maanfee.Dashboard.Core/Maanfee.Dashboard.Core.csproj" Id="05a7bb30-b1d5-4b32-9e09-4b10019d79ad" />
+    <Project Path="DashboardAPI/Maanfee.Dashboard.Domain/Maanfee.Dashboard.Domain.csproj" Id="4cec1f4a-3876-4462-8234-84857a5830ac" />
     <Project Path="DashboardAPI/Maanfee.Dashboard.Resources/Maanfee.Dashboard.Resources.csproj" />
+    <Project Path="DashboardAPI/Maanfee.Dashboard.Services/Maanfee.Dashboard.Services.csproj" Id="a3a4d711-f035-43a5-af20-1e0e522cf71f" />
     <Project Path="DashboardAPI/Maanfee.Dashboard.Views.Core/Maanfee.Dashboard.Views.Core.csproj" Id="972bbd27-7af7-4f93-8d3e-e3aa24ff2396" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+    <File Path="SolutionItems/Drawing4.vsdx" />
   </Folder>
 </Solution>
