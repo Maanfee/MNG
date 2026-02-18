@@ -1,6 +1,10 @@
-﻿using Maanfee.Dashboard.Resources;
+﻿using Maanfee.Dashboard.Domain.Entities;
+using Maanfee.Dashboard.Resources;
 using Maanfee.Dashboard.Views.Core;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
+using static System.Net.WebRequestMethods;
 
 namespace Maanfee.Dashboard.Client.Layout
 {
@@ -10,13 +14,64 @@ namespace Maanfee.Dashboard.Client.Layout
         {
             await base.OnInitializedAsync();
 
-            Fullscreen?.FullscreenChanged += OnFullscreenChange;
+            try
+            {
+                var State = (await AuthenticationState!).User.Identity;
+
+                if (!State!.IsAuthenticated)
+                {
+                    Navigation?.NavigateTo("/login");
+                }
+                else
+                {
+                    //var username = State.Name;
+                    //var Callback = await Http.GetFromJsonAsync<CallbackResult<ApplicationUser>>($"/api/Users/GetUserByUserName/{username}");
+
+                    //if (Callback.Data != null)
+                    //{
+                    //AccountStateContainer.Id = Callback.Data.Id;
+                    //AccountStateContainer.UserName = Callback.Data.UserName;
+                    //AccountStateContainer.Name = Callback.Data.Name;
+                    //AccountStateContainer.Avatar = "data:image/png;base64," + Convert.ToBase64String(Callback.Data.Avatar);
+                    //AccountStateContainer.PersonalCode = Callback.Data.PersonalCode;
+                    //AccountStateContainer.IdUserDepartments = Callback.Data.UserDepartments.Select(x => x.IdDepartment).ToList();
+
+                    Snackbar?.Configuration.PositionClass = Defaults.Classes.Position.BottomRight;
+                    Snackbar?.Configuration.PreventDuplicates = true;
+                    Snackbar?.Add($"{DashboardResource.StringWelcome}", Severity.Success);
+
+                    // ********************************************
+                    //if (!AccountStateContainer.IdUserDepartments.Any())
+                    //{
+                    //    await Task.Delay(1000);
+                    //    await Dialog!.ShowAsync<DialogDepartmentNotFound>(string.Empty,
+                    //            new DialogOptions
+                    //            {
+                    //                BackdropClick = false,
+                    //                MaxWidth = MaxWidth.Small,
+                    //                FullWidth = true
+                    //            });
+                    //}
+                    // ********************************************
+
+                    //IsVisible = " ";
+                    //}
+                    //else
+                    //{
+                    //    Snackbar.Add(Callback.Error.ToString(), Severity.Error);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                Snackbar?.Add($"{DashboardResource.StringError} : " + ex.Message, Severity.Error);
+            }
+
             //if (SharedLayoutSettings.IsFullscreenMode)
             //{
             //    await Fullscreen!.ToggleFullscreenAsync();
             //}
-
-            Snackbar?.Add($"{DashboardResource.StringWelcome}", Severity.Success);
+            Fullscreen?.FullscreenChanged += OnFullscreenChange;
         }
 
         // ******************************************************

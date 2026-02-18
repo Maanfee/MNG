@@ -7,7 +7,7 @@ namespace Maanfee.Dashboard.Domain.Entities
     public class UserGroup
     {
         [Key]
-        public string? Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         // ******************************************************************
 

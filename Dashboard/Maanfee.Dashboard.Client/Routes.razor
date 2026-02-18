@@ -1,7 +1,29 @@
-﻿<Router AppAssembly="typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
-    @*   <Router AppAssembly="@typeof(Program).Assembly"
-    AdditionalAssemblies="@LazyLoadedAssemblies" OnNavigateAsync="@OnNavigateAsync"> *@
-    <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.AdminLayout)" />
-    </Found>
-</Router>
+﻿
+<MudThemeProvider Theme="@SharedLayoutSettings.Theme" IsDarkMode="@SharedLayoutSettings.IsDarkMode" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(AdminLayout)">
+                <NotAuthorized>
+                    <Maanfee.Dashboard.Client.Pages.Authentications.Login />
+                </NotAuthorized>
+                <Authorizing>
+                    <MudText>در حال بررسی احراز هویت...</MudText>
+                </Authorizing>
+            </AuthorizeRouteView>
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(AdminLayout)">
+                <MudContainer>
+                    <MudText Typo="Typo.h3">صفحه مورد نظر یافت نشد</MudText>
+                </MudContainer>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>

@@ -7,6 +7,8 @@
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
 @using System.Globalization
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
 
 @using Maanfee.Dashboard.Client
 @using Maanfee.Dashboard.Client.Layout
@@ -14,3 +16,6 @@
 @using Maanfee.Dashboard.Views.Core
 @using Maanfee.Dashboard.Client.Resources
 @using Maanfee.Dashboard.Resources
+@using Maanfee.Dashboard.Domain.ViewModels
+
+@inject CustomAuthenticationStateProvider AuthenticationStateProvider

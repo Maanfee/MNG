@@ -10,7 +10,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddMaanfeeDashboardServiceManager();
-builder.Services.AddDatabaseConfigurations(builder.Configuration);
+builder.Services.AddDashboardCompression();
+builder.Services.AddDashboardAuthorization();
+builder.Services.AddDashboardDatabaseConfigurations(builder.Configuration);
 
 var app = builder.Build();
 
@@ -26,7 +28,9 @@ else
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
 app.UseAntiforgery();
 
-app.AddServerConfigurations();
+app.UseDashboardCompression();
+app.UseDashboardAuthorization();
+app.UseDashboardDatabaseConfigurations();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()

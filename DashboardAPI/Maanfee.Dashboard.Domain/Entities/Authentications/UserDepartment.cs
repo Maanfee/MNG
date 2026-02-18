@@ -8,7 +8,7 @@ namespace Maanfee.Dashboard.Domain
     public class UserDepartment
     {
         [Key]
-        public string? Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         // ******************************************************************
 

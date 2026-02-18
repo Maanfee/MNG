@@ -9,6 +9,8 @@
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
     <!--**********************************************-->
     <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    <NoWarn>$(NoWarn);WASM0001</NoWarn>
+
   </PropertyGroup>
 
   <ItemGroup>

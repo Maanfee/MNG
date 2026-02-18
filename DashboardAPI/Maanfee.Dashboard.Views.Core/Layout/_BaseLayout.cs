@@ -1,8 +1,11 @@
 ﻿using Maanfee.JsInterop;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Maanfee.Dashboard.Views.Core 
+namespace Maanfee.Dashboard.Views.Core
 {
     public class _BaseLayout : LayoutComponentBase
     {
@@ -23,6 +26,12 @@ namespace Maanfee.Dashboard.Views.Core
 
         [Inject]
         protected virtual IDialogService? Dialog { get; set; }
+
+        [CascadingParameter]
+        protected Task<AuthenticationState>? AuthenticationState { get; set; }
+
+        //[Inject]
+        //protected virtual IAuthorizationService? AuthorizationService { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

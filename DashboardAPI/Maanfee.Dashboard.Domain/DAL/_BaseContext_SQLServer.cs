@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Maanfee.Dashboard.Domain.DAL
 {
-    public partial class _BaseContext_SQLServer : IdentityDbContext<ApplicationUser>, IBaseDbContext // _BaseEntityContext<_BaseContext_SQLServer>
+    public partial class _BaseContext_SQLServer : IdentityDbContext<ApplicationUser> 
     {
         public _BaseContext_SQLServer(DbContextOptions<_BaseContext_SQLServer> options) : base(options)
         {
@@ -46,7 +46,7 @@ namespace Maanfee.Dashboard.Domain.DAL
             modelBuilder.Entity<ApplicationUser>(b =>
             {
                 //b.HasIndex(p => new { p.Phrase }).IsUnique(true);
-                b.HasIndex(p => new { p.UserName }).IsUnique(true);
+                //b.HasIndex(p => new { p.UserName }).IsUnique(true);
                 b.HasIndex(p => new { p.PersonalCode }).IsUnique(true);
 
                 b.ToTable("AspNetUsers");

@@ -9,16 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.3" />
-  </ItemGroup>
-
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.3" /> </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maanfee.Dashboard.Domain\Maanfee.Dashboard.Domain.csproj" />
+    <ProjectReference Include="..\Maanfee.Dashboard.Views.Core\Maanfee.Dashboard.Views.Core.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DefaultValues\" />
-  </ItemGroup>
-
 
 </Project>

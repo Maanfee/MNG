@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MudBlazor;
 using MudBlazor.Services;
-
+ 
 namespace Maanfee.Dashboard
 {
     public static class ServiceCollectionExtensions
@@ -46,5 +46,6 @@ namespace Maanfee.Dashboard
 
             return services;
         }
+             
     }
 }

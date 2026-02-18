@@ -11,6 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="10.*" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.3.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Maanfee.Dashboard.Core\Maanfee.Dashboard.Core.csproj" />
     <ProjectReference Include="..\Maanfee.Dashboard.Domain\Maanfee.Dashboard.Domain.csproj" />
   </ItemGroup>
